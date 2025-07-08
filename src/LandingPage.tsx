@@ -20,10 +20,34 @@ const LandingPage = () => {
   };
 
   const handleSignup = async () => {
-    const { error } = await supabase.auth.signUp({ email, password });
-    if (error) alert(error.message);
-    else window.location.href = "/app";
+    const { data, error } = await supabase.auth.signUp({ email, password });
+    if (error) {
+      alert(error.message);
+      return;
+    }
+
+    if (data.user) {
+      // Insert profile metadata
+      const { error: profileError } = await supabase.from("profiles").insert([
+        {
+          id: data.user.id,
+          email: email,
+          is_premium: false,
+          plan: "free",
+          free_access_limit: 2, // optional if you added that column
+        },
+      ]);
+
+      if (profileError) {
+        console.error("Profile creation failed:", profileError.message);
+        alert("Signup failed: " + profileError.message);
+        return;
+      }
+
+      window.location.href = "/app";
+    }
   };
+  
 
   const paymentConfig = (amount: number) => ({
     public_key: "FLWPUBK_TEST-xxxxxx", // Replace with your real key
