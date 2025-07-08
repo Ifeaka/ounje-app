@@ -1,5 +1,9 @@
 /* LandingPage.css */
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Segoe UI', sans-serif;
     margin: 0;
@@ -17,6 +21,9 @@ header {
     background-color: #fff;
     border-bottom: 1px solid #ddd;
     padding: 16px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 nav.container {
@@ -61,138 +68,225 @@ nav.container {
     border-radius: 6px;
     cursor: pointer;
     font-weight: bold;
+    transition: background 0.2s;
+}
+
+.cta-button:hover {
+    background-color: #22c55e;
+}
+
+.section {
+    padding: 80px 24px;
+    background: #fff;
+    border-top: 1px solid #eee;
+    text-align: center;
+}
+
+.section h2 {
+    font-size: 32px;
+    margin-bottom: 24px;
+    color: #111827;
+}
+
+.section ul {
+    padding-left: 20px;
+    line-height: 1.8;
+    text-align: left;
+    max-width: 600px;
+    margin: 0 auto 24px;
+}
+
+.section p {
+    font-size: 18px;
+    color: #333;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Pricing Cards */
+#pricing .pricing-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+    margin-top: 32px;
+}
+
+#pricing .pricing-card {
+    background: #f3f4f6;
+    padding: 32px;
+    border-radius: 12px;
+    width: 280px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s;
+}
+
+#pricing .pricing-card:hover {
+    transform: translateY(-4px);
+}
+
+#pricing .pricing-card h3 {
+    font-size: 24px;
+    margin-bottom: 12px;
+}
+
+#pricing .pricing-card p {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+#pricing .pricing-card .note {
+    font-size: 14px;
+    color: #dc2626;
+    margin-bottom: 16px;
+}
+
+#pricing .pricing-card button {
+    background-color: #111827;
+    color: #fff;
+    padding: 12px 24px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#pricing .pricing-card button:hover {
+    background-color: #4ade80;
+}
+
+/* Modal */
+.auth-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+}
+
+.auth-content {
+    background: white;
+    padding: 24px;
+    border-radius: 8px;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.auth-content input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+.auth-content button {
+    background: #4ade80;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.auth-content button:hover {
+    background: #22c55e;
+}
+
+/* Improve buttons in hero */
+.hero-buttons button {
+    min-width: 140px;
+    font-size: 16px;
+    padding: 10px 20px;
+    font-weight: 600;
+    border-radius: 6px;
+}
+.lifetime-highlight {
+    background-color: #facc15 !important;
+    /* bright yellow */
+    color: #111 !important;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.lifetime-highlight:hover {
+    background-color: #eab308 !important;
+    transform: scale(1.05);
 }
 
 .hero {
-    flex-grow: 1;
-    background: linear-gradient(to bottom right, #e0fce4, #fafff9);
-    display: flex;
-    align-items: center;
-    padding: 60px 24px;
+    background: #f0fdf4;
+    padding: 100px 20px;
+    text-align: center;
 }
 
 .hero-content {
-    max-width: 1100px;
+    max-width: 800px;
     margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 48px;
-    justify-content: space-between;
-}
-
-.hero-text {
-    flex: 1;
-    min-width: 300px;
 }
 
 .hero-title {
-    font-size: 48px;
-    margin-bottom: 16px;
-    color: #1a1a1a;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 20px;
 }
 
 .hero-subtitle {
-    font-size: 18px;
-    margin-bottom: 24px;
-    color: #555;
-    max-width: 500px;
+    font-size: 1.25rem;
+    color: #374151;
+    margin-bottom: 32px;
+    line-height: 1.6;
 }
 
 .hero-buttons {
     display: flex;
+    justify-content: center;
     gap: 16px;
-    margin-bottom: 32px;
 }
 
-.primary-button {
-    background-color: #111827;
-    color: white;
+.primary-button,
+.secondary-button {
     padding: 12px 24px;
-    border: none;
     border-radius: 6px;
     font-size: 16px;
     cursor: pointer;
+    font-weight: 600;
+}
+
+.primary-button {
+    background-color: #4ade80;
+    color: white;
+    border: none;
 }
 
 .secondary-button {
     background-color: transparent;
-    border: 2px solid #111827;
-    color: #111827;
-    padding: 12px 24px;
-    border-radius: 6px;
-    font-size: 16px;
-    cursor: pointer;
+    color: #4ade80;
+    border: 2px solid #4ade80;
 }
 
-.hero-stats {
-    display: flex;
-    gap: 24px;
-    margin-top: 24px;
+.primary-button:hover {
+    background-color: #22c55e;
 }
 
-.stat {
-    text-align: center;
-}
-
-.stat-number {
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.stat-label {
-    font-size: 14px;
-    color: #666;
-}
-
-.hero-visual {
-    flex: 1;
-    min-width: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.phone-mockup {
-    background: #fff;
-    border-radius: 32px;
-    width: 260px;
-    padding: 20px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-    position: relative;
-}
-
-.premium-badge {
-    position: absolute;
-    top: -12px;
-    left: 12px;
-    background: #fde68a;
-    padding: 4px 10px;
-    border-radius: 12px;
-    font-size: 12px;
-    font-weight: bold;
-}
-
-.phone-screen {
-    background-color: #f4f4f4;
-    border-radius: 24px;
-    padding: 16px;
-}
-
-.app-ui .app-header {
-    font-weight: bold;
-    margin-bottom: 12px;
-}
-
-.budget-card {
-    background: #d1fae5;
-    padding: 10px;
-    border-radius: 8px;
-    margin-bottom: 16px;
-}
-
-.budget-item {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 12px;
-    font-size: 14px;
+.secondary-button:hover {
+    background-color: #e6fce9;
 }
